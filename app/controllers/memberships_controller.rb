@@ -12,7 +12,9 @@ class MembershipsController < ApplicationController
 
   # GET /memberships/new
   def new
+    redirect_to signin_path unless current_user
     @membership = Membership.new
+    @beer_clubs = BeerClub.all
   end
 
   # GET /memberships/1/edit
@@ -21,11 +23,11 @@ class MembershipsController < ApplicationController
 
   # POST /memberships or /memberships.json
   def create
-    @membership = Membership.new(membership_params)
+    @membership = Membership.new(beer_club_id: membership_params['beer_club_id'], user_id: current_user.id)
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to membership_url(@membership), notice: "Membership was successfully created." }
+        format.html { redirect_to membership_url(@membership), notice: "Successfully joined #{BeerClub.find(@membership.beer_club_id).name}." }
         format.json { render :show, status: :created, location: @membership }
       else
         format.html { render :new, status: :unprocessable_entity }
