@@ -34,14 +34,16 @@
   <% @user.ratings.each do |rating| %>
     <li>
       <%= rating %>
-      <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: "Really delete #{rating.score} point rating for #{rating.beer.name}?" } } %>
+      <% if @user == current_user %>
+        <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: "Really delete #{rating.score} point rating for #{rating.beer.name}?" } } %>
+      <% end %>
     </li>
   <% end %>
 </ul>
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
-
-  <%= button_to "Destroy this user", @user, method: :delete %>
+  <% if @user == current_user %>
+    <%= link_to "Edit this user", edit_user_path(@user) %>
+    <%= button_to "Destroy this user", @user, method: :delete %>
+  <% end %>
 </div>
