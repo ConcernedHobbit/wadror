@@ -19,7 +19,7 @@
   <% else %>
     <strong>Average rating:</strong>
     <%= beer.average_rating %>
-    (<%= beer.ratings.count %> ratings)
+    (<%= "#{beer.ratings.count} #{'rating'.pluralize(beer.ratings.count)}" %>)
   <% end %>
 
   <p>
