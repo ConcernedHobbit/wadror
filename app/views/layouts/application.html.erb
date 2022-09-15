@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <div class="navbar">
+      <%= link_to 'breweries', breweries_path %>
+      <%= link_to 'beers', beers_path %>
+    </div>
+
     <%= yield %>
   </body>
 </html>
