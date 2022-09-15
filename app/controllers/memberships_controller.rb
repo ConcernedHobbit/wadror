@@ -31,6 +31,7 @@ class MembershipsController < ApplicationController
         format.html { redirect_to membership_url(@membership), notice: "Successfully joined #{BeerClub.find(@membership.beer_club_id).name}." }
         format.json { render :show, status: :created, location: @membership }
       else
+        @beer_clubs = BeerClub.excluding(current_user.beer_clubs)
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @membership.errors, status: :unprocessable_entity }
       end
