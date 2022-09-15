@@ -7,6 +7,6 @@
 
 <ul>
   <% @ratings.each do |rating| %>
-    <li> <%= render rating %> </li>
+    <li> <%= render rating %> <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: "Really delete #{rating.score} point rating for #{rating.beer.name}?" } } %> </li>
   <% end %>
 </ul>
