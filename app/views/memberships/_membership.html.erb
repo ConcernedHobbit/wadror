@@ -1,12 +1,12 @@
 <div id="<%= dom_id membership %>">
   <p>
-    <strong>Beer club:</strong>
-    <%= membership.beer_club_id %>
+    User
+    <strong>
+      <%= membership.user.username %>
+    </strong>
+    is part of
+    <strong>
+      <%= membership.beer_club.name %>
+    </strong>
   </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= membership.user_id %>
-  </p>
-
 </div>
