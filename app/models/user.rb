@@ -14,4 +14,10 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 4 }
   validates :password, format: { with: /[A-Z]/, message: "must contain uppercase letter" }
   validates :password, format: { with: /\d/, message: "must contain digit" }
+
+  def favorite_beer
+    return nil if ratings.empty?
+
+    ratings.order(score: :desc).limit(1).first.beer
+  end
 end
