@@ -2,6 +2,25 @@
 
 <%= render @user %>
 
+<p>
+  User has made 
+  <%= @user.ratings.count %> 
+  ratings, average rating 
+  <%= @user.average_rating %>
+</p>
+
+<p>
+  <strong>Ratings</strong>
+</p>
+<ul>
+  <% @user.ratings.each do |rating| %>
+    <li>
+      <%= rating %>
+      <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: "Really delete #{rating.score} point rating for #{rating.beer.name}?" } } %>
+    </li>
+  <% end %>
+</ul>
+
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
