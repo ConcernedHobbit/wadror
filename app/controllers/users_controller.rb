@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       if @user != current_user
         format.html { redirect_to user_url(@user), notice: "You do not have permission to update this user." }
         format.json { render :show, status: :forbidden, location: @user }
-      elsif @user.update(user_params)
+      elsif user_params[:username].nil? && @user.update(user_params)
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
