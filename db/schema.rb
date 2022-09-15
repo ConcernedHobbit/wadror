@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_15_182700) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_15_190846) do
+  create_table "beer_clubs", force: :cascade do |t|
+    t.string "name"
+    t.integer "founded"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "beers", force: :cascade do |t|
     t.string "name"
     t.string "style"
@@ -22,6 +30,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_182700) do
   create_table "breweries", force: :cascade do |t|
     t.string "name"
     t.integer "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer "beer_club_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
