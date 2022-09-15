@@ -21,8 +21,4 @@
     <%= beer.average_rating %>
     (<%= "#{beer.ratings.count} #{'rating'.pluralize(beer.ratings.count)}" %>)
   <% end %>
-
-  <p>
-    <%= link_to 'List of breweries', breweries_path %>
-  </p>
 </div>
