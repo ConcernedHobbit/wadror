@@ -3,6 +3,14 @@
 <p style="color: red"><%= notice %></p>
 
 <%= form_with url: session_path, method: :post do |form| %>
-  <%= form.text_field :username %>
-  <%= form.submit "Log in" %>
+  <div>
+    <%= form.label :username, style: "display: block" %>
+    <%= form.text_field :username %>
+  </div>
+
+  <div>
+    <%= form.label :password, style: "display: block" %>
+    <%= form.password_field :password %>
+    <%= form.submit "Log in" %>
+  </div>
 <% end %>

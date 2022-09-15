@@ -13,8 +13,8 @@ b2.beers.create name: "X Porter", style: "Porter"
 b3.beers.create name: "Hefeweizen", style: "Weizen"
 helles = b3.beers.create name: "Helles", style: "Lager"
 
-u1 = User.create username: "Olli"
-u2 = User.create username: "Vilma"
+u1 = User.create username: "Olli", password: "kaljafani1", password_confirmation: "kaljafani1"
+u2 = User.create username: "Vilma", password: "sala123", password_confirmation: "sala123"
 
 karhu.ratings.create score: 70, user_id: u1.id
 karhu.ratings.create score: 35, user_id: u2.id
