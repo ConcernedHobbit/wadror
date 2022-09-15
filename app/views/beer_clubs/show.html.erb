@@ -2,6 +2,22 @@
 
 <%= render @beer_club %>
 
+<% if @beer_club.members.empty? %>
+  <p>
+    <strong>No members</strong>
+  </p>
+<% else %>
+  <p>
+    <strong>Members:</strong>
+  </p>
+
+  <ul>
+    <% @beer_club.members.each do |member| %>
+      <li><%= link_to member.username, member %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div>
   <%= link_to "Edit this beer club", edit_beer_club_path(@beer_club) %> |
   <%= link_to "Back to beer clubs", beer_clubs_path %>

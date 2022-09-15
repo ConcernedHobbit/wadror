@@ -9,6 +9,24 @@
   <%= @user.average_rating %>
 </p>
 
+<% if @user.beer_clubs.empty? %>
+  <p>
+    User is not a member of any club
+  </p>
+<% else %>
+  <p>
+    <strong>Beer Clubs</strong>
+  </p>
+  <ul>
+    <% @user.beer_clubs.each do |beer_club| %>
+      <li>
+        <%= beer_club.name %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <p>
   <strong>Ratings</strong>
 </p>
