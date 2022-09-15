@@ -27,6 +27,8 @@ gem "jbuilder"
 group :development, :test do
   # Use sqlite for local development database
   gem "sqlite3"
+  # Use pry-byebug for development debugging
+  gem 'pry-byebug'
 end
 
 group :production do
