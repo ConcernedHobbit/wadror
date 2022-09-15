@@ -1,24 +1,5 @@
-# README
+# Web application programming with Ruby on Rails
+**TKT21003 Fall 2022, Eetu Raunio**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The application is deployed at [https://best-beer-app.fly.dev](https://best-beer-app.fly.dev/breweries) using fly's free tier. It may run out of memory at times, but should have a persistent posgresql database.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
