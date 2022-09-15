@@ -1,0 +1,68 @@
+concerned:ratebeer/ (main✗) $ rails c                                                                       [19:38:56]
+Loading development environment (Rails 7.0.4)
+irb(main):001:0> brewdog = Brewery.create name: "BrewDog", year: 2007
+  TRANSACTION (0.1ms)  begin transaction
+  Brewery Create (0.4ms)  INSERT INTO "breweries" ("name", "year", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "BrewDog"], ["year", 2007], ["created_at", "2022-09-15 16:39:20.506724"], ["updated_at", "2022-09-15 16:39:20.506724"]]
+  TRANSACTION (11.1ms)  commit transaction
+=>
+#<Brewery:0x00007fbb7458dc20
+...
+irb(main):002:0> punkipa = brewdog.beers.create name: "Punk IPA", style: "IPA"
+  TRANSACTION (0.2ms)  begin transaction
+  Beer Create (0.2ms)  INSERT INTO "beers" ("name", "style", "brewery_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Punk IPA"], ["style", "IPA"], ["brewery_id", 4], ["created_at", "2022-09-15 16:39:42.452362"], ["updated_at", "2022-09-15 16:39:42.452362"]]
+  TRANSACTION (11.6ms)  commit transaction
+=>
+#<Beer:0x00007fbb74ec2f98
+...
+irb(main):003:0> nannystate = brewdog.beers.create name: "Nanny State", style: "lowalcohol"
+  TRANSACTION (0.2ms)  begin transaction
+  Beer Create (0.6ms)  INSERT INTO "beers" ("name", "style", "brewery_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Nanny State"], ["style", "lowalcohol"], ["brewery_id", 4], ["created_at", "2022-09-15 16:39:54.371866"], ["updated_at", "2022-09-15 16:39:54.371866"]]
+  TRANSACTION (12.4ms)  commit transaction
+=>
+#<Beer:0x00007fbb74e3d550
+...
+irb(main):004:0> punkipa.ratings.create score: 45
+  TRANSACTION (0.1ms)  begin transaction
+  Rating Create (0.3ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 45], ["beer_id", 8], ["created_at", "2022-09-15 16:40:20.149608"], ["updated_at", "2022-09-15 16:40:20.149608"]]
+  TRANSACTION (11.4ms)  commit transaction
+=>
+#<Rating:0x00007fbb75f76df8
+ id: 1,
+ score: 45,
+ beer_id: 8,
+ created_at: Thu, 15 Sep 2022 16:40:20.149608000 UTC +00:00,
+ updated_at: Thu, 15 Sep 2022 16:40:20.149608000 UTC +00:00>
+irb(main):005:0> punkipa.ratings.create score: 25
+  TRANSACTION (0.2ms)  begin transaction
+  Rating Create (0.7ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 25], ["beer_id", 8], ["created_at", "2022-09-15 16:40:24.335412"], ["updated_at", "2022-09-15 16:40:24.335412"]]
+  TRANSACTION (52.6ms)  commit transaction
+=>
+#<Rating:0x00007fbb74ea4048
+ id: 2,
+ score: 25,
+ beer_id: 8,
+ created_at: Thu, 15 Sep 2022 16:40:24.335412000 UTC +00:00,
+ updated_at: Thu, 15 Sep 2022 16:40:24.335412000 UTC +00:00>
+irb(main):006:0> nannystate.ratings.create score: 5
+  TRANSACTION (0.2ms)  begin transaction
+  Rating Create (0.6ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 5], ["beer_id", 9], ["created_at", "2022-09-15 16:40:29.170197"], ["updated_at", "2022-09-15 16:40:29.170197"]]
+  TRANSACTION (12.4ms)  commit transaction
+=>
+#<Rating:0x00007fbb75bebb48
+ id: 3,
+ score: 5,
+ beer_id: 9,
+ created_at: Thu, 15 Sep 2022 16:40:29.170197000 UTC +00:00,
+ updated_at: Thu, 15 Sep 2022 16:40:29.170197000 UTC +00:00>
+irb(main):007:0> nannystate.ratings.create score: 50
+  TRANSACTION (0.2ms)  begin transaction
+  Rating Create (0.6ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 50], ["beer_id", 9], ["created_at", "2022-09-15 16:40:32.654847"], ["updated_at", "2022-09-15 16:40:32.654847"]]
+  TRANSACTION (52.2ms)  commit transaction
+=>
+#<Rating:0x00007fbb75ba4270
+ id: 4,
+ score: 50,
+ beer_id: 9,
+ created_at: Thu, 15 Sep 2022 16:40:32.654847000 UTC +00:00,
+ updated_at: Thu, 15 Sep 2022 16:40:32.654847000 UTC +00:00>
+irb(main):008:0>
