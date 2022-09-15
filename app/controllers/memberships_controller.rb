@@ -12,9 +12,10 @@ class MembershipsController < ApplicationController
 
   # GET /memberships/new
   def new
-    redirect_to signin_path unless current_user
+    return redirect_to signin_path unless current_user
+
     @membership = Membership.new
-    @beer_clubs = BeerClub.all
+    @beer_clubs = BeerClub.excluding(current_user.beer_clubs)
   end
 
   # GET /memberships/1/edit
