@@ -48,3 +48,11 @@ jobs:
        uses: andrewmcodes-archive/rubocop-linter-action@v3.3.0
        env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         
+  publish:
+    needs: [test, lint]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
