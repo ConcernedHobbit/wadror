@@ -24,6 +24,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Help with HTTP requests [https://github.com/jnunemaker/httparty]
+gem 'httparty'
+
 group :development, :test do
   # Use sqlite for local development database
   gem "sqlite3"
