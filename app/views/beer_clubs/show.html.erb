@@ -18,6 +18,14 @@
   </ul>
 <% end %>
 
+<% if current_user and not @beer_club.members.include?(current_user) %>
+  <%= form_with(model: @membership) do |form| %>
+    <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.submit "Join the beer club" %>
+  <% end %>
+<% end %>
+
 <div>
   <% if current_user %>
     <%= link_to "Edit this beer club", edit_beer_club_path(@beer_club) %> |
