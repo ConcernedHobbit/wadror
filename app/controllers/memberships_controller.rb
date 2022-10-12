@@ -1,4 +1,5 @@
 class MembershipsController < ApplicationController
+  before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :set_membership, only: %i[show edit update destroy]
 
   # GET /memberships or /memberships.json
@@ -12,8 +13,6 @@ class MembershipsController < ApplicationController
 
   # GET /memberships/new
   def new
-    return redirect_to signin_path unless current_user
-
     @membership = Membership.new
     @beer_clubs = BeerClub.excluding(current_user.beer_clubs)
   end
