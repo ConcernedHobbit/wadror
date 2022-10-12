@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<% if @place %>
+  <h2><%= @place.name %></h2>
+  <p><%= @place.address %></p>
+  <p><%= @place.status %></p>
+<% else %>
+  <p><strong>No such place!</strong></p>
+<% end %>
+
+<%= link_to "Back to search", places_path %>
