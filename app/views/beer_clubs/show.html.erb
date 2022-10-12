@@ -28,8 +28,6 @@
 
 <% if @membership and @membership.id %>
   <%= form_with(url: membership_path(@membership.id), method: :delete) do |form| %>
-    <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
     <%= form.submit "Leave the beer club" %>
   <% end %>
 <% end %>
