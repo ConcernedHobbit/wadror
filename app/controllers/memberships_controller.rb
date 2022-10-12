@@ -27,7 +27,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to membership_url(@membership), notice: "Successfully joined #{BeerClub.find(@membership.beer_club_id).name}." }
+        format.html { redirect_to beer_club_url(@membership.beer_club_id), notice: "Welcome to the club, #{User.find(@membership.user_id).username}!" }
         format.json { render :show, status: :created, location: @membership }
       else
         @beer_clubs = BeerClub.excluding(current_user.beer_clubs)
@@ -55,7 +55,7 @@ class MembershipsController < ApplicationController
     @membership.destroy
 
     respond_to do |format|
-      format.html { redirect_to memberships_url, notice: "Membership was successfully destroyed." }
+      format.html { redirect_to beer_club_path(@membership.beer_club_id), notice: "You've left #{BeerClub.find(@membership.beer_club_id).name}." }
       format.json { head :no_content }
     end
   end
