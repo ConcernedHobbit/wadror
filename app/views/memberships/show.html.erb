@@ -3,8 +3,6 @@
 <%= render @membership %>
 
 <div>
-  <%= link_to "Edit this membership", edit_membership_path(@membership) %> |
   <%= link_to "Back to memberships", memberships_path %>
-
-  <%= button_to "Destroy this membership", @membership, method: :delete %>
+  <%= button_to("Destroy this membership", @membership, method: :delete) if current_user and current_user.id == @membership.user_id %>
 </div>
