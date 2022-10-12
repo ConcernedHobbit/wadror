@@ -1,0 +1,25 @@
+<h1>Beer places search</h1>
+
+<p id="notice"><%= notice %></p>
+
+<%= form_with url: places_path, method: :post do |form| %>
+  city <%= form.text_field :city %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<% if @places %>
+  <table>
+    <thead>
+      <% Place.rendered_fields.each do |field| %>
+        <th><%= field %></th>
+      <% end %>
+    </thead>
+    <% @places.each do |place| %>
+      <tr>
+        <% Place.rendered_fields.each do |field| %>
+          <td><%= place.send(field) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
