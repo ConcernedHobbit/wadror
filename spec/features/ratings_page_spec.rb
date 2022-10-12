@@ -53,5 +53,11 @@ describe "Rating" do
       visit user_path(user2)
       expect(page).not_to have_content "Olvi 20"
     end
+
+    it "user's page should reflect favourite brewery and style" do
+      visit user_path(user)
+      expect(page).to have_content "Favorite style: Lager"
+      expect(page).to have_content "Favorite brewery: anonymous"
+    end
   end
 end
