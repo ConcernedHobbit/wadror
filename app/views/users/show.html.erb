@@ -31,6 +31,9 @@
   <strong>Ratings</strong>
 </p>
 <ul>
+  <% if @user.ratings.empty? %>
+    <li><em>None yet! :(</em></li>
+  <% end%>
   <% @user.ratings.each do |rating| %>
     <li>
       <%= rating %>
@@ -40,6 +43,14 @@
     </li>
   <% end %>
 </ul>
+
+<% if @user.favorite_style %>
+  <p>Favorite style: <strong><%= @user.favorite_style %></strong></p>
+<% end %>
+
+<% if @user.favorite_brewery %>
+  <p>Favorite brewery: <strong><%= link_to @user.favorite_brewery.name, brewery_path(@user.favorite_brewery) %></strong></p>
+<% end %>
 
 <div>
   <% if @user == current_user %>
