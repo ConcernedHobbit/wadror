@@ -30,4 +30,14 @@ class User < ApplicationRecord
          .transform_values { |ratings| ratings.sum / ratings.size } # Average ratings for each style
          .max_by(&:last).first # Find the name of the style with the maximum average
   end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+
+    beers.map { |beer| [beer.brewery, beer.ratings.map(&:score)] } # Map to [brewery, [...ratings]]
+         .group_by(&:shift) # Group by the brewery while shifting it away, leaving [[...ratings]] for each style
+         .transform_values(&:flatten) # Flatten the ratings for each brewery, leaving hash with brewery and corresponding ratings
+         .transform_values { |ratings| ratings.sum / ratings.size } # Average ratings for each brewery
+         .max_by(&:last).first # Find brewery with the maximum average
+  end
 end
