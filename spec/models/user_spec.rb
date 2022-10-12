@@ -59,23 +59,47 @@ RSpec.describe User, type: :model do
     end
 
     it "is the only rated if only one rating" do
-      beer = FactoryBot.create(:beer)
-      rating = FactoryBot.create(:rating, score: 20, beer: beer, user: user)
+      beer = create_beer_with_rating({ user: user }, 20)
     
       expect(user.favorite_beer).to eq(beer)
     end
 
     it "is the one with highest rating if several rated" do
-      create_beers_with_many_ratings({user: user}, 10, 20, 15, 7, 9)
+      create_beers_with_many_ratings({ user: user }, 10, 20, 15, 7, 9)
       best = create_beer_with_rating({ user: user }, 25 )
 
       expect(user.favorite_beer).to eq(best)
     end
   end
+
+  describe "favorite style" do
+    let(:user){ FactoryBot.create(:user) }
+
+    it "has method for determining one" do
+      expect(user).to respond_to(:favorite_style)
+    end
+
+    it "without ratings does not have one" do
+      expect(user.favorite_style).to eq(nil)
+    end
+
+    it "is the only rated beer's style if only one rating" do
+      only = create_beer_with_rating({ user: user }, 25)
+
+      expect(user.favorite_style).to eq(only.style)
+    end
+
+    it "is the one with the highest average rating if several rated" do
+      create_beers_with_many_ratings({ user: user, beer_overrides: { style: "Lager" }}, 5, 10, 10)
+      create_beers_with_many_ratings({ user: user, beer_overrides: { style: "IPA" }}, 20, 40)
+
+      expect(user.favorite_style).to eq("IPA")
+    end
+  end
 end
 
 def create_beer_with_rating(object, score)
-  beer = FactoryBot.create(:beer)
+  beer = FactoryBot.create(:beer, object[:beer_overrides])
   FactoryBot.create(:rating, beer: beer, score: score, user: object[:user] )
   beer
 end

@@ -20,4 +20,14 @@ class User < ApplicationRecord
 
     ratings.order(score: :desc).limit(1).first.beer
   end
+
+  def favorite_style
+    return nil if ratings.empty?
+
+    beers.map { |beer| [beer.style, beer.ratings.map(&:score)] } # Map to [style, [...ratings]]
+         .group_by(&:shift) # Group by the style while shifting it away, leaving [[...ratings]] for each style
+         .transform_values(&:flatten) # Flatten the ratings for each style, leaving hash with style and corresponding ratings
+         .transform_values { |ratings| ratings.sum / ratings.size } # Average ratings for each style
+         .max_by(&:last).first # Find the name of the style with the maximum average
+  end
 end
