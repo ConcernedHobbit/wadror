@@ -55,7 +55,7 @@ class MembershipsController < ApplicationController
     @membership.destroy
 
     respond_to do |format|
-      format.html { redirect_to beer_club_path(@membership.beer_club_id), notice: "You've left #{BeerClub.find(@membership.beer_club_id).name}." }
+      format.html { redirect_to user_path(@membership.user_id), notice: "You've left #{BeerClub.find(@membership.beer_club_id).name}." }
       format.json { head :no_content }
     end
   end
