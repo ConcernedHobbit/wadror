@@ -19,7 +19,7 @@ class BeermappingApi
   end
 
   def self.specific_place(place_id)
-    Rails.cache.fetch(id) { get_specific_place(place_id) }
+    Rails.cache.fetch(place_id) { get_specific_place(place_id) }
   end
 
   def self.get_specific_place(place_id)
